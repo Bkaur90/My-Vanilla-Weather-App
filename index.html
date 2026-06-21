@@ -21,16 +21,18 @@
     <div class="weather-app-container">
       <div class="weather-app-header">
         <h1 class="city">
-          London
-
-          <div class="day-time">Friday, 20 June 19:00</div>
+          <div  id="city">London</div>
+      
+        <div class="day-time">Friday, 10:00 PM</div>
         </h1>
-        <form class="search-form">
+
+        <form class="search-form" id="search-form">
           <input
             type="text"
             placeholder="Type a city name..."
             required
             class="search-input"
+            id="search-input"
           />
 
           <button class="search-button">
@@ -39,7 +41,8 @@
 
           <div class="weather-app-sidebuttons">
             <button class="unit-button">
-              <a href="#" target="_blank">°C </a>/ <a href="#" target="_blank">°F</a>
+              <a href="#" target="_blank">°C </a>/
+              <a href="#" target="_blank">°F</a>
             </button>
             <button class="theme-button">
               <span class="material-symbols-outlined"> mode_night </span

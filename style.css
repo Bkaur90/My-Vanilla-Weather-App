@@ -16,18 +16,19 @@ body {
   margin: 0 auto;
   padding: 40px 40px 10px 40px;
   border-radius: 30px;
- 
 }
 .weather-app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 .city {
   text-align: left;
   font-size: 40px;
   color: #290d76;
+}
+.day-time {
+  margin: 10px;
 }
 .day-time {
   text-align: left;
@@ -74,7 +75,7 @@ body {
   cursor: pointer;
 }
 .unit-button a {
-    color: #170842;
+  color: #170842;
   text-decoration: none;
 }
 .theme-button {
@@ -89,7 +90,7 @@ main {
   display: flex;
   flex-direction: column;
   margin: 30px;
-font-weight: 600;
+  font-weight: 600;
 }
 
 .weather-info {
@@ -100,7 +101,6 @@ font-weight: 600;
 .temperature {
   text-align: right;
   font-size: 80px;
- 
 }
 strong {
   color: #290d76;
