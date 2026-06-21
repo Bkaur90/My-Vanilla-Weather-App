@@ -1,9 +1,9 @@
 body {
-  background: linear-gradient(
-    90deg,
-    rgb(16, 19, 69) 0%,
-    rgb(139, 102, 241) 100%
-  );
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/180/585/original/daymode.jpg?1782016791");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #90bbe0;
 }
 .weather-app-container {
   text-align: center;
@@ -65,6 +65,7 @@ body {
   justify-content: space-evenly;
   gap: 10px;
 }
+
 .unit-button {
   font-size: 20px;
   font-weight: 500;
@@ -78,6 +79,12 @@ body {
   color: #170842;
   text-decoration: none;
 }
+.unit-button:hover {
+  cursor: pointer;
+  background-color: #805ee1;
+  font-weight: 600;
+}
+
 .theme-button {
   text-align: right;
   padding: 5px;
@@ -85,6 +92,18 @@ body {
   border-radius: 40px;
   background-color: #ebe8f6;
   cursor: pointer;
+}
+
+.theme-button:hover {
+  cursor: pointer;
+  background-color: #805ee1;
+  font-weight: 600;
+}
+.dark-theme {
+  background: URL("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/180/586/original/nightmode.jpg?1782016816");
+
+  background-size: cover;
+  background-color: white;
 }
 main {
   display: flex;
