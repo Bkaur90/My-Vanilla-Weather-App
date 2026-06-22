@@ -24,7 +24,7 @@ body {
 }
 .city {
   text-align: left;
-  font-size: 40px;
+  font-size: 50px;
   color: #3582d5;
 }
 
@@ -33,8 +33,8 @@ body {
 }
 .day-time {
   text-align: left;
-  font-size: 14px;
-  color: rgb(0, 0, 0, 0.6);
+  font-size: 20px;
+  color: rgb(0, 0, 0, 0.8);
 }
 .search-form {
   display: flex;
@@ -137,9 +137,21 @@ main {
   justify-content: space-evenly;
 }
 
-.temperature {
-  text-align: right;
-  font-size: 80px;
+.iconImage {
+ 
+  height: 100px;
+  width: 100px;
+}
+#icon {
+  font-size: 60px;
+}
+#temperature {
+  margin-top: 10px;
+  font-size: 90px;
+}
+
+#tempUnit {
+  font-size: 50px;
 }
 strong {
   color: #290d76;
