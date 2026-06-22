@@ -1,9 +1,9 @@
 body {
   background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/180/585/original/daymode.jpg?1782016791");
-
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
-  background-color: #90bbe0;
+  background-position: center;
 }
 .weather-app-container {
   text-align: center;
@@ -25,8 +25,9 @@ body {
 .city {
   text-align: left;
   font-size: 40px;
-  color: #290d76;
+  color: #3582d5;
 }
+
 .day-time {
   margin: 10px;
 }
@@ -67,12 +68,14 @@ body {
 }
 
 .unit-button {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 500;
   padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
   border: 1px solid rgb(0, 0, 0, 0.2);
   border-radius: 40px;
-  background-color: #ebe8f6;
+  background-color: #649fdd;
   cursor: pointer;
 }
 .unit-button a {
@@ -80,30 +83,47 @@ body {
   text-decoration: none;
 }
 .unit-button:hover {
-  cursor: pointer;
-  background-color: #805ee1;
-  font-weight: 600;
+  transition: all 300ms ease-in-out;
 }
 
 .theme-button {
   text-align: right;
-  padding: 5px;
+  padding: 10px;
   border: 1px solid rgb(0, 0, 0, 0.2);
-  border-radius: 40px;
-  background-color: #ebe8f6;
+  border-radius: 30px;
+  background-color: #649fdd;
   cursor: pointer;
 }
 
 .theme-button:hover {
   cursor: pointer;
-  background-color: #805ee1;
+  background-color: #001128;
+  color: white;
   font-weight: 600;
+  transition: all 300ms ease-in-out;
 }
 .dark-theme {
   background: URL("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/180/586/original/nightmode.jpg?1782016816");
 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
-  background-color: white;
+  background-position: center;
+}
+.dark-theme .city {
+  color: #001128;
+}
+.dark-theme .unit-button a {
+  background-color: black;
+  color: white;
+}
+.dark-theme .unit-button {
+  background-color: black;
+  color: white;
+}
+.dark-theme .theme-button {
+  background-color: black;
+  color: white;
 }
 main {
   display: flex;
@@ -126,7 +146,7 @@ strong {
 }
 
 a {
-  color: #805ee1;
+  color: blue;
 }
 
 footer {

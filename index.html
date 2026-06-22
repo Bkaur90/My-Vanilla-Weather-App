@@ -42,8 +42,10 @@
 
           <div class="weather-app-sidebuttons">
             <button class="unit-button">
-              <a href="#" target="_blank">°C </a>/
-              <a href="#" target="_blank">°F</a>
+              <a href="#" target="_blank" id="celsius-link">°C </a>
+            </button>
+            <button class="unit-button">
+              <a href="#" target="_blank" id="fahrenheit-link">°F</a>
             </button>
             <button class="theme-button">
               <span class="material-symbols-outlined"> mode_night </span
@@ -55,8 +57,8 @@
       <main>
         <div class="temperature">
           <span>☀️</span>
-          <span>20</span>
-          <span>°C</span>
+          <span id="temperature">20</span>
+          <span id="tempUnit">°</span>
         </div>
         <br />
         <div class="weather-info">
