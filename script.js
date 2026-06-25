@@ -42,6 +42,8 @@ function ChangeTemperature(response) {
 
   let celsiuslink = document.querySelector("#celsius-link");
   celsiuslink.addEventListener("click", ShowCelsiusTemperature);
+
+  GetWeeklyForecast(response.data.city);
 }
 
 function DateAndTime(date) {
@@ -100,7 +102,6 @@ function ChangeCityName(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", ChangeCityName);
 
-ApplyCityAPI("Toronto");
 function ThemeToggle(event) {
   event.preventDefault();
   let body = document.querySelector("body");
@@ -109,7 +110,13 @@ function ThemeToggle(event) {
 let themeButton = document.querySelector(".theme-button");
 themeButton.addEventListener("click", ThemeToggle);
 
-function DisplayWeeklyForecast() {
+function GetWeeklyForecast(city) {
+  let apiKey = "ff2o8b1ffc14490t1c0bba91e21ca53c";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+  axios.get(apiUrl).then(DisplayWeeklyForecast);
+}
+
+function DisplayWeeklyForecast(response) {
   let weeklyForecastdays = ["Sun", "Mon", "Tues", "Wed"];
   let ForecastHtml = "";
   weeklyForecastdays.forEach(function (day) {
@@ -131,4 +138,5 @@ function DisplayWeeklyForecast() {
   let ForecastElement = document.querySelector("#Weekly-Forecast");
   ForecastElement.innerHTML = ForecastHtml;
 }
-DisplayWeeklyForecast();
+
+ApplyCityAPI("Toronto");
