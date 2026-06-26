@@ -1,6 +1,8 @@
+let globalForecastResponse = null;
+
 function ChangeTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
-  let CelciusTemperature = response.data.temperature.current;
+  let CelsiusTemperature = response.data.temperature.current;
   let cityname = document.querySelector("#city");
   let citySearchInput = document.querySelector("#search-input");
   let descriptionElement = document.querySelector("#description");
@@ -11,7 +13,7 @@ function ChangeTemperature(response) {
   let date = new Date(response.data.time * 1000);
   let IconImage = document.querySelector("#icon");
 
-  temperatureElement.innerHTML = Math.round(CelciusTemperature);
+  temperatureElement.innerHTML = Math.round(CelsiusTemperature);
   cityname.innerHTML = response.data.city;
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
@@ -23,10 +25,13 @@ function ChangeTemperature(response) {
   function ShowFahrenheitTemperature(event) {
     event.preventDefault();
     let temperatureElement = document.querySelector("#temperature");
-    let fahrenheitTemperature = (CelciusTemperature * 9) / 5 + 32;
+    let fahrenheitTemperature = (CelsiusTemperature * 9) / 5 + 32;
     celsiuslink.classList.remove("UnitChange");
     fahrenheitlink.classList.add("UnitChange");
     temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+    if (globalForecastResponse) {
+      DisplayWeeklyForecast(globalForecastResponse, "fahrenheit");
+    }
   }
 
   function ShowCelsiusTemperature(event) {
@@ -34,7 +39,11 @@ function ChangeTemperature(response) {
     let temperatureElement = document.querySelector("#temperature");
     celsiuslink.classList.add("UnitChange");
     fahrenheitlink.classList.remove("UnitChange");
-    temperatureElement.innerHTML = Math.round(CelciusTemperature);
+    temperatureElement.innerHTML = Math.round(CelsiusTemperature);
+
+    if (globalForecastResponse) {
+      DisplayWeeklyForecast(globalForecastResponse, "celsius");
+    }
   }
 
   let fahrenheitlink = document.querySelector("#fahrenheit-link");
@@ -43,7 +52,7 @@ function ChangeTemperature(response) {
   let celsiuslink = document.querySelector("#celsius-link");
   celsiuslink.addEventListener("click", ShowCelsiusTemperature);
 
-  GetWeeklyForecast(response.data.city);
+  GetWeeklyForecast(response.data.city, "unit");
 }
 
 function DateAndTime(date) {
@@ -112,8 +121,11 @@ themeButton.addEventListener("click", ThemeToggle);
 
 function GetWeeklyForecast(city) {
   let apiKey = "ff2o8b1ffc14490t1c0bba91e21ca53c";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
-  axios.get(apiUrl).then(DisplayWeeklyForecast);
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(function (response) {
+    globalForecastResponse = response;
+    DisplayWeeklyForecast(response, "celsius");
+  });
 }
 function formatday(timestamp) {
   let days = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
@@ -121,23 +133,31 @@ function formatday(timestamp) {
   return days[date.getDay()];
 }
 formatday(1782406800);
-function DisplayWeeklyForecast(response) {
+function DisplayWeeklyForecast(response, unit) {
   console.log(response.data);
 
   let ForecastHtml = "";
   response.data.daily.forEach(function (day, index) {
     if (index < 5) {
+      let maxTemp = day.temperature.maximum;
+      let minTemp = day.temperature.minimum;
+
+      if (unit === "fahrenheit") {
+        maxTemp = (maxTemp * 9) / 5 + 32;
+        minTemp = (minTemp * 9) / 5 + 32;
+      }
       ForecastHtml =
         ForecastHtml +
         `
+
         <div class="week-days">
           <div class="weekly-day">${formatday(day.time)}</div>
           <div class="weekly-icons"><img src="${day.condition.icon_url}" /></div>
           <div class="weekly-temperatures">
             <div class="weekly-HighLow-temperatures">
-              <strong>  ${Math.round(day.temperature.maximum)}°</strong>
+              <strong>  ${Math.round(maxTemp)}°</strong>
             </div>
-            <div class="weekly-HighLow-temperatures">${Math.round(day.temperature.minimum)}°</div>
+            <div class="weekly-HighLow-temperatures">${Math.round(minTemp)}°</div>
           </div>
         </div>`;
     }
